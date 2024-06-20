@@ -12,13 +12,15 @@ namespace CajeroAutomaticoForm
 {
     public partial class Form1 : Form
     {
-        static string cadenaconexion = "";
+        static string cadenaconexion = "Data Source=(localdb)\\ProjectModels;Initial Catalog=DBCajeroAutomatico;Integrated Security=True";
         SqlConnection conexion = new SqlConnection(cadenaconexion);
 
         public Form1()
         {
             InitializeComponent();
         }
+
+
 
         private void btnClear_Click(object sender, EventArgs e)
         {
@@ -47,12 +49,12 @@ namespace CajeroAutomaticoForm
             SqlConnection connection = new SqlConnection(cadenaconexion);
 
             // Query para verificar las credenciales
-            string query = "SELECT * FROM Usuarios WHERE usuario = @usuario AND clave = @clave";
+            string query = "SELECT * FROM Clientes WHERE usuario = @usuario COLLATE Latin1_General_CS_AS AND clabe = @clabe COLLATE Latin1_General_CS_AS";
 
             // Comando para ejecutar la consulta
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@usuario", usuario);
-            command.Parameters.AddWithValue("@clave", clave);
+            command.Parameters.AddWithValue("@clabe", clave);
 
             try
             {
@@ -61,11 +63,13 @@ namespace CajeroAutomaticoForm
 
                 if (reader.Read())
                 {
-                    // Si las credenciales son válidas, podrías abrir el formulario principal del cajero automático u otro formulario
+                    // Si las credenciales son válidas, abrir el formulario principal y pasar el nombre de usuario
                     MessageBox.Show("Inicio de sesión exitoso");
+                    this.Hide();
 
-
-
+                    MenuCajero nuevomenu = new MenuCajero(usuario);
+                    nuevomenu.FormClosed += (s, args) => this.Close();
+                    nuevomenu.Show();
                 }
                 else
                 {
@@ -81,5 +85,7 @@ namespace CajeroAutomaticoForm
                 connection.Close();
             }
         }
+
+
     }
 }

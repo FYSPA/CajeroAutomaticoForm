@@ -157,6 +157,7 @@ namespace CajeroAutomaticoForm
             // 
             // Form1
             // 
+            this.AcceptButton = this.btnEnter;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
@@ -172,6 +173,7 @@ namespace CajeroAutomaticoForm
             this.Controls.Add(this.Usuario);
             this.Controls.Add(this.txtCLAVE);
             this.Controls.Add(this.txtUSUARIO);
+            this.DoubleBuffered = true;
             this.Name = "Form1";
             this.Text = "Login";
             this.ResumeLayout(false);
