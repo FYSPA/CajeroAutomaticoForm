@@ -47,8 +47,6 @@ namespace CajeroAutomaticoForm
             this.btnConsultaPuntos = new System.Windows.Forms.Button();
             this.btnCanjearPuntos = new System.Windows.Forms.Button();
             this.btnCerrarSesion = new System.Windows.Forms.Button();
-            this.labh = new System.Windows.Forms.Label();
-            this.hora = new System.Windows.Forms.Timer(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -63,6 +61,8 @@ namespace CajeroAutomaticoForm
             this.btn2 = new System.Windows.Forms.Button();
             this.btn1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -156,7 +156,7 @@ namespace CajeroAutomaticoForm
             this.labTitular.BackColor = System.Drawing.Color.Blue;
             this.labTitular.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labTitular.ForeColor = System.Drawing.Color.White;
-            this.labTitular.Location = new System.Drawing.Point(195, 375);
+            this.labTitular.Location = new System.Drawing.Point(193, 327);
             this.labTitular.Name = "labTitular";
             this.labTitular.Size = new System.Drawing.Size(36, 13);
             this.labTitular.TabIndex = 20;
@@ -268,25 +268,6 @@ namespace CajeroAutomaticoForm
             this.btnCerrarSesion.TabIndex = 7;
             this.btnCerrarSesion.UseVisualStyleBackColor = false;
             this.btnCerrarSesion.Click += new System.EventHandler(this.btnCerrarSesion_Click);
-            // 
-            // labh
-            // 
-            this.labh.AutoSize = true;
-            this.labh.BackColor = System.Drawing.Color.Blue;
-            this.labh.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.labh.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labh.ForeColor = System.Drawing.Color.White;
-            this.labh.Location = new System.Drawing.Point(208, 306);
-            this.labh.Name = "labh";
-            this.labh.Size = new System.Drawing.Size(44, 15);
-            this.labh.TabIndex = 22;
-            this.labh.Text = "HMTT";
-            this.labh.Click += new System.EventHandler(this.labHora_Click);
-            // 
-            // hora
-            // 
-            this.hora.Enabled = true;
-            this.hora.Interval = 1000;
             // 
             // button1
             // 
@@ -511,6 +492,23 @@ namespace CajeroAutomaticoForm
             this.pictureBox1.TabIndex = 36;
             this.pictureBox1.TabStop = false;
             // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 1000;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.Blue;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.White;
+            this.label8.Location = new System.Drawing.Point(193, 306);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(31, 13);
+            this.label8.TabIndex = 37;
+            this.label8.Text = "HMS";
+            // 
             // MenuCajero
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -518,6 +516,7 @@ namespace CajeroAutomaticoForm
             this.BackgroundImage = global::CajeroAutomaticoForm.Properties.Resources.cajero;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(624, 841);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.btnCancel);
@@ -531,7 +530,6 @@ namespace CajeroAutomaticoForm
             this.Controls.Add(this.btn3);
             this.Controls.Add(this.btn2);
             this.Controls.Add(this.btn1);
-            this.Controls.Add(this.labh);
             this.Controls.Add(this.btnCerrarSesion);
             this.Controls.Add(this.btnCanjearPuntos);
             this.Controls.Add(this.btnConsultaPuntos);
@@ -575,8 +573,7 @@ namespace CajeroAutomaticoForm
         private System.Windows.Forms.Button btnConsultaPuntos;
         private System.Windows.Forms.Button btnCanjearPuntos;
         private System.Windows.Forms.Button btnCerrarSesion;
-        private System.Windows.Forms.Label labh;
-        private System.Windows.Forms.Timer hora;
+    //    private System.Windows.Forms.Timer hora;
         public System.Windows.Forms.Button button1;
         public System.Windows.Forms.Button button2;
         public System.Windows.Forms.Button btnCancel;
@@ -591,5 +588,7 @@ namespace CajeroAutomaticoForm
         public System.Windows.Forms.Button btn2;
         public System.Windows.Forms.Button btn1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label label8;
     }
 }

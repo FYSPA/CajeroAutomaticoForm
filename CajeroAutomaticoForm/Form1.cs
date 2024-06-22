@@ -18,6 +18,8 @@ namespace CajeroAutomaticoForm
         public Form1()
         {
             InitializeComponent();
+
+            btnEnter.Click += btnEnter_Click;
         }
 
 
@@ -39,22 +41,25 @@ namespace CajeroAutomaticoForm
 
 
 
+        private bool mensajeMostrado = false;
+        private bool error = false;
+        private MenuCajero menuCajero;
 
         private void btnEnter_Click(object sender, EventArgs e)
         {
-
             string usuario = txtUSUARIO.Text;
-            string clave = txtCLAVE.Text;
+            string clabe = txtCLAVE.Text;
 
+            string cadenaconexion = "Data Source=(localdb)\\ProjectModels;Initial Catalog=DBCajeroAutomatico;Integrated Security=True"; // Reemplaza con tu cadena de conexión
             SqlConnection connection = new SqlConnection(cadenaconexion);
 
             // Query para verificar las credenciales
-            string query = "SELECT * FROM Clientes WHERE usuario = @usuario COLLATE Latin1_General_CS_AS AND clabe = @clabe COLLATE Latin1_General_CS_AS";
+            string query = "SELECT * FROM CLIENTES WHERE Usuario = @usuario COLLATE Latin1_General_CS_AS AND Clabe = @clabe COLLATE Latin1_General_CS_AS";
 
             // Comando para ejecutar la consulta
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@usuario", usuario);
-            command.Parameters.AddWithValue("@clabe", clave);
+            command.Parameters.AddWithValue("@clabe", clabe);
 
             try
             {
@@ -63,17 +68,30 @@ namespace CajeroAutomaticoForm
 
                 if (reader.Read())
                 {
-                    // Si las credenciales son válidas, abrir el formulario principal y pasar el nombre de usuario
-                    MessageBox.Show("Inicio de sesión exitoso");
+                    // Si las credenciales son válidas, mostrar mensaje y abrir el formulario principal
+                    if (!mensajeMostrado)
+                    {
+                        MessageBox.Show("Inicio de sesión exitoso");
+                        mensajeMostrado = true;
+                    }
+
                     this.Hide();
 
-                    MenuCajero nuevomenu = new MenuCajero(usuario);
-                    nuevomenu.FormClosed += (s, args) => this.Close();
-                    nuevomenu.Show();
+                    if (menuCajero == null)
+                    {
+                        menuCajero = new MenuCajero(usuario, clabe);
+                        menuCajero.FormClosed += (s, args) => { this.Close(); menuCajero = null; };
+                    }
+
+                    menuCajero.Show();
                 }
                 else
                 {
-                    MessageBox.Show("Nombre de usuario o clave incorrectos");
+                    if (!error)
+                    {
+                        MessageBox.Show("Nombre de usuario o clave incorrectos");
+                        error = true;
+                    }
                 }
             }
             catch (Exception ex)
@@ -86,6 +104,14 @@ namespace CajeroAutomaticoForm
             }
         }
 
+        public string usuario
+        {
+            get { return txtUSUARIO.Text; }
+        }
 
+        public string Clave
+        {
+            get { return txtCLAVE.Text; }
+        }
     }
 }

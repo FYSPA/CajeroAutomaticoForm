@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static CajeroAutomaticoForm.MenuCajero;
 
 namespace CajeroAutomaticoForm
 {
@@ -16,72 +18,27 @@ namespace CajeroAutomaticoForm
         static string cadenaconexion = "Data Source=(localdb)\\ProjectModels;Initial Catalog=DBCajeroAutomatico;Integrated Security=True";
         SqlConnection conexion = new SqlConnection(cadenaconexion);
 
-
-        private string nomUsuari { get; set; }
         private string _usuario;
+        private string _clabe;
 
-
-        public static void Maind()
-        {
-            Usuario usuario = new Usuario { nomUsuari = "tuNombreUsuario" };
-            decimal saldo = usuario.ConsultarSaldo();
-
-            MessageBox.Show($"El saldo actual es: {saldo:C}", "Saldo Actual");
-        }
-
-        public MenuCajero()
+        public MenuCajero(string usuario, string clabe)
         {
             InitializeComponent();
+            _usuario = usuario;
+            _clabe = clabe;
+            UpdateLabel();
+
             this.btnConsultarSaldo.Click += new System.EventHandler(this.btnConsultarSaldo_Click);
+
+          
         }
-
-
-        internal class Usuario
-        {
-            public string nomUsuari { get; set; }
-
-            internal decimal ConsultarSaldo()
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-            public MenuCajero(string usuario)
-            {
-              InitializeComponent();
-             _usuario = usuario;
-             UpdateLabel();
-
-
-              // Configurar el Timer
-              hora = new Timer();
-              hora.Interval = 1000; // Intervalo de 1 segundo
-              hora.Tick += Timer_Tick; // Evento que se ejecuta cada vez que el Timer cuenta el intervalo
-              hora.Start(); // Iniciar el Timer
-            }
-
-
-
-
 
         private void UpdateLabel()
         {
-            labTitular.Text = "Titular:" + _usuario;
+            labTitular.Text = "Titular: " + _usuario;
         }
 
-
-
-        private void labHora_Click(object sender, EventArgs e)
-        {
-        }
-
-
-
-        private void Timer_Tick(object sender, EventArgs e)
-        {
-            // Actualizar el Label con la hora actual
-            labh.Text = DateTime.Now.ToString("hh:mm tt");
-        }
+      
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
@@ -94,47 +51,53 @@ namespace CajeroAutomaticoForm
 
         private void btnConsultarSaldo_Click(object sender, EventArgs e)
         {
-            string nombreUsuario = "tuNombreUsuario"; // Puedes obtener esto de un TextBox u otro control
-            decimal saldo = ConsultarSaldo(nombreUsuario);
 
-            MessageBox.Show($"El saldo actual es: {saldo:C}", "Saldo Actual");
+            decimal saldo = ConsultarSaldo(_usuario, _clabe);
+
+            if (saldo >= 0)
+            {
+                MessageBox.Show($"El saldo actual es: {saldo:C}", "Saldo Actual");
+            }
+            else if (saldo == -1)
+            {
+                MessageBox.Show("Usuario o clave incorrectos.", "Error");
+            }
+            else if (saldo <= 0)
+            {
+                MessageBox.Show($"No tiene dinero en la cuenta, el saldo es {saldo:C}", "Saldo Insuficiente");
+            }
         }
 
+        private bool error = false;
 
-
-            private void btnRetirarSaldo_Click(object sender, EventArgs e)
+        private decimal ConsultarSaldo(string usuario, string clabe)
         {
+            decimal saldo = -1;
 
-        }
-
-        private void btnCanjearPuntos_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        public decimal ConsultarSaldo(string nombreUsuario)
-        {
-            decimal saldo = 0;
-
-            string query = "SELECT Saldo FROM Clientes WHERE usuario = @usuario";
+            string cadenaconexion = "Data Source=(localdb)\\ProjectModels;Initial Catalog=DBCajeroAutomatico;Integrated Security=True";
+            string query = @"
+             SELECT dc.Saldo 
+             FROM Clientes c
+             INNER JOIN DatosCliente dc ON c.Id_Cliente = dc.Id_Cliente
+             WHERE c.Usuario = @Usuario AND c.Clabe = @Clabe";
 
             using (SqlConnection connection = new SqlConnection(cadenaconexion))
             {
                 SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@usuario", nombreUsuario);
+                command.Parameters.AddWithValue("@Usuario", usuario);
+                command.Parameters.AddWithValue("@Clabe", clabe);
 
                 try
                 {
                     connection.Open();
                     object result = command.ExecuteScalar();
-                    if (result != null)
+                    if (result != null && result != DBNull.Value)
                     {
                         saldo = Convert.ToDecimal(result);
+                    }
+                    else
+                    {
+                        saldo = 0; // Establecer el saldo a cero si no tiene dinero en la cuenta
                     }
                 }
                 catch (Exception ex)
@@ -146,7 +109,20 @@ namespace CajeroAutomaticoForm
             return saldo;
         }
 
-    }
+        private void btnRetirarSaldo_Click(object sender, EventArgs e)
+        {
+            // Implementación para retirar saldo
+        }
 
-   }
+        private void btnCanjearPuntos_Click(object sender, EventArgs e)
+        {
+            // Implementación para canjear puntos
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+    }
+}
 
