@@ -18,76 +18,114 @@ namespace CajeroAutomaticoForm
         static string cadenaconexion = "Data Source=(localdb)\\ProjectModels;Initial Catalog=DBCajeroAutomatico;Integrated Security=True";
         SqlConnection conexion = new SqlConnection(cadenaconexion);
 
-        private string _cuentaOrigen;
+       
 
         public string NumeroDeCuenta { get; }
+
 
         public TransferirNoCuenta(string numeroDeCuenta)
         {
             InitializeComponent();
             // Usa el número de cuenta en tu lógica, por ejemplo:
-            label1.Text = "Transferencia para la cuenta " + numeroDeCuenta;
+            label13.Text = "No.Cuenta Propietario " + numeroDeCuenta;
 
+
+         
         }
 
-      
+
 
         private void btnTransferir_Click(object sender, EventArgs e)
         {
-            String cuentaDestino = txtCuentaDestino.Text;
-            decimal monto = decimal.Parse(txtMonto.Text);
+            string cuentaPrincipal = txtCuentaOrigen.Text;
+            string cuentaRecibido = txtCuentaDestino.Text;
+            decimal monto;
 
-            TransferirDinero(_cuentaOrigen, cuentaDestino, monto);
-
-            this.Close();
-        }
-
-        private void TransferirDinero(string cuentaOrigen, string cuentaDestino, decimal monto)
-        {
-            using (SqlConnection conexion = new SqlConnection(cadenaconexion))
+            if (!decimal.TryParse(txtMonto.Text, out monto))
             {
-                // Iniciar una transacción para garantizar la consistencia de los saldos
-                SqlTransaction transaction = null;
+                MessageBox.Show("Por favor, ingresa un monto válido.");
+                return;
+            }
+
+            if (monto <= 0)
+            {
+                MessageBox.Show("El monto debe ser mayor a cero.");
+                return;
+            }
+
+            using (SqlConnection connection = new SqlConnection(cadenaconexion))
+            {
+                connection.Open();
+                SqlTransaction transaction = connection.BeginTransaction();
+
                 try
                 {
-                    conexion.Open();
-                    transaction = conexion.BeginTransaction();
-
-                    // Actualizar el saldo de la cuenta de origen
-                    string consultaOrigen = "UPDATE Clientes SET saldo = saldo - @monto WHERE cuenta = @NoCuentaPrincipal";
-                    using (SqlCommand comandoOrigen = new SqlCommand(consultaOrigen, conexion, transaction))
+                    // Verificar el saldo de la cuenta principal
+                    decimal saldoPrincipal = ObtenerSaldo(cuentaPrincipal, connection, transaction);
+                    if (saldoPrincipal < monto)
                     {
-                        comandoOrigen.Parameters.AddWithValue("@monto", monto);
-                        comandoOrigen.Parameters.AddWithValue("@NoCuentaPrincipal", cuentaOrigen);
-                        comandoOrigen.ExecuteNonQuery();
+                        MessageBox.Show("Saldo insuficiente en la cuenta principal.");
+                        transaction.Rollback();
+                        return;
                     }
 
-                    // Actualizar el saldo de la cuenta de destino
-                    string consultaDestino = "UPDATE Clientes SET saldo = saldo + @monto WHERE cuenta = @NoCuentaPrincipal";
-                    using (SqlCommand comandoDestino = new SqlCommand(consultaDestino, conexion, transaction))
-                    {
-                        comandoDestino.Parameters.AddWithValue("@monto", monto);
-                        comandoDestino.Parameters.AddWithValue("@NoCuentaPrincipal", cuentaDestino);
-                        comandoDestino.ExecuteNonQuery();
-                    }
+                    // Descontar el monto de la cuenta principal
+                    ActualizarSaldo(cuentaPrincipal, -monto, connection, transaction);
 
-                    // Confirmar la transacción si todo está correcto
+                    // Agregar el monto a la cuenta recibida
+                    ActualizarSaldo(cuentaRecibido, monto, connection, transaction);
+
                     transaction.Commit();
 
-                    MessageBox.Show($"Transferencia exitosa de {monto:C} de la cuenta {cuentaOrigen} a la cuenta {cuentaDestino}.", "Transferencia Exitosa");
+                    // Mostrar mensaje con el saldo actualizado
+                    saldoPrincipal = ObtenerSaldo(cuentaPrincipal, connection, transaction);
+                    MessageBox.Show($"Transferencia realizada con éxito. Tu saldo actual es: {saldoPrincipal:C}");
+
+                    txtMonto.Clear();
+                    txtCuentaOrigen.Clear();
+                    txtCuentaDestino.Clear();
                 }
                 catch (Exception ex)
                 {
-                    // Revertir la transacción en caso de error
-                    transaction?.Rollback();
-                    MessageBox.Show($"Error al realizar la transferencia: {ex.Message}", "Error");
+                    MessageBox.Show($"Error al realizar la transferencia: {ex.Message}");
+                    transaction.Rollback();
                 }
             }
         }
 
+        private decimal ObtenerSaldo(string numeroCuenta, SqlConnection connection, SqlTransaction transaction)
+        {
+            string query = "SELECT Saldo FROM DatosCliente WHERE NoCuentaPrincipal = @NoCuentaPrincipal";
+            using (SqlCommand command = new SqlCommand(query, connection, transaction))
+            {
+                command.Parameters.AddWithValue("@NoCuentaPrincipal", numeroCuenta);
+                object result = command.ExecuteScalar();
+                return result != null ? Convert.ToDecimal(result) : 0m;
+            }
+        }
 
-     
+        private void ActualizarSaldo(string numeroCuenta, decimal monto, SqlConnection connection, SqlTransaction transaction)
+        {
+            string query = "UPDATE DatosCliente SET Saldo = Saldo + @Monto WHERE NoCuentaPrincipal = @NoCuentaPrincipal";
+            using (SqlCommand command = new SqlCommand(query, connection, transaction))
+            {
+                command.Parameters.AddWithValue("@Monto", monto);
+                command.Parameters.AddWithValue("@NoCuentaPrincipal", numeroCuenta);
+                command.ExecuteNonQuery();
+            }
+        }
+
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            txtCuentaDestino.Clear();
+            txtCuentaOrigen.Clear();
+            txtMonto.Clear();
+        }
     }
-
-   }
-
+}

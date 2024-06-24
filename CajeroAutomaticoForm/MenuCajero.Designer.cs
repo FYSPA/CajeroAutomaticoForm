@@ -493,7 +493,7 @@ namespace CajeroAutomaticoForm
             this.label8.BackColor = System.Drawing.Color.Blue;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(206, 307);
+            this.label8.Location = new System.Drawing.Point(210, 308);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(31, 13);
             this.label8.TabIndex = 37;

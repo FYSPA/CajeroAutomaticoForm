@@ -82,8 +82,13 @@ namespace CajeroAutomaticoForm
 
                     if (menuCajero == null)
                     {
+                      
                         menuCajero = new MenuCajero(usuario, clabe);
                         menuCajero.FormClosed += (s, args) => { this.Close(); menuCajero = null; };
+
+
+
+                      
                     }
 
                     menuCajero.Show();
@@ -116,6 +121,7 @@ namespace CajeroAutomaticoForm
         {
             get { return txtCLAVE.Text; }
         }
-      
+
+    
     }
 }

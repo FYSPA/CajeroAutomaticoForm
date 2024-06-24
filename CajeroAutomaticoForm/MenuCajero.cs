@@ -21,6 +21,8 @@ namespace CajeroAutomaticoForm
 
         private string _usuario;
         private string _clabe;
+    
+
 
 
 
@@ -41,18 +43,12 @@ namespace CajeroAutomaticoForm
         }
 
 
-
         private void TimerTick(object sender, EventArgs e)
         {
             label8.Text = DateTime.Now.ToString("hh,mm tt");
         }
 
-        private void TimerTick()
-        {
-
-
-
-        }
+       
         private void UpdateLabel()
         {
             labTitular.Text = "Titular: " + _usuario;
@@ -170,7 +166,12 @@ namespace CajeroAutomaticoForm
         {
             using (SqlConnection conexion = new SqlConnection(cadenaconexion))
             {
-                string query = "SELECT NoCuentaPrincipal FROM Clientes WHERE Usuario = @Usuario AND Clabe = @Clabe";
+                string query = @"
+        SELECT DC.NoCuentaPrincipal 
+        FROM DatosCliente DC
+        INNER JOIN Clientes C ON DC.Id_Cliente = C.Id_Cliente 
+        WHERE C.Usuario = @Usuario AND C.Clabe = @Clabe";
+
                 SqlCommand command = new SqlCommand(query, conexion);
                 command.Parameters.AddWithValue("@Usuario", usuario);
                 command.Parameters.AddWithValue("@Clabe", clabe);
