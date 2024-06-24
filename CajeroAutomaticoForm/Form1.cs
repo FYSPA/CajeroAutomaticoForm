@@ -15,6 +15,9 @@ namespace CajeroAutomaticoForm
         static string cadenaconexion = "Data Source=(localdb)\\ProjectModels;Initial Catalog=DBCajeroAutomatico;Integrated Security=True";
         SqlConnection conexion = new SqlConnection(cadenaconexion);
 
+
+        public string usu { get { return txtUSUARIO.Text; } }
+        public string clav { get { return txtCLAVE.Text; } }
         public Form1()
         {
             InitializeComponent();
@@ -113,5 +116,6 @@ namespace CajeroAutomaticoForm
         {
             get { return txtCLAVE.Text; }
         }
+      
     }
 }

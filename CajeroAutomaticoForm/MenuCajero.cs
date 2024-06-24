@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static CajeroAutomaticoForm.MenuCajero;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace CajeroAutomaticoForm
 {
@@ -21,6 +22,8 @@ namespace CajeroAutomaticoForm
         private string _usuario;
         private string _clabe;
 
+
+
         public MenuCajero(string usuario, string clabe)
         {
             InitializeComponent();
@@ -30,16 +33,32 @@ namespace CajeroAutomaticoForm
 
             this.btnConsultarSaldo.Click += new System.EventHandler(this.btnConsultarSaldo_Click);
 
+            timer1.Interval = 1000;
+            timer1.Tick += TimerTick;
+            timer1.Start();
+
           
         }
 
+
+
+        private void TimerTick(object sender, EventArgs e)
+        {
+            label8.Text = DateTime.Now.ToString("hh,mm tt");
+        }
+
+        private void TimerTick()
+        {
+
+
+
+        }
         private void UpdateLabel()
         {
             labTitular.Text = "Titular: " + _usuario;
         }
 
-      
-
+       
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
             Form1 nuevomenu = new Form1();
@@ -68,7 +87,7 @@ namespace CajeroAutomaticoForm
             }
         }
 
-        private bool error = false;
+
 
         private decimal ConsultarSaldo(string usuario, string clabe)
         {
@@ -111,8 +130,13 @@ namespace CajeroAutomaticoForm
 
         private void btnRetirarSaldo_Click(object sender, EventArgs e)
         {
-            // Implementación para retirar saldo
+            // Pasar los valores de usuario y clave al crear una instancia de RetiraraMonto
+            RetiraraMonto nuevoMenu = new RetiraraMonto(_usuario, _clabe);
+            nuevoMenu.FormClosed += (s, args) => this.Close();
+            nuevoMenu.Show();
         }
+
+
 
         private void btnCanjearPuntos_Click(object sender, EventArgs e)
         {
@@ -123,6 +147,75 @@ namespace CajeroAutomaticoForm
         {
             Application.Exit();
         }
+
+        private void Transferencia_Click(object sender, EventArgs e)
+        {
+            string numeroDeCuenta = ObtenerCuentaPrincipal(_usuario, _clabe); // Obtén el número de cuenta de alguna manera
+            if (!string.IsNullOrEmpty(numeroDeCuenta))
+            {
+                TransferirNoCuenta transferenciaForm = new TransferirNoCuenta(numeroDeCuenta);
+                transferenciaForm.FormClosed += (s, args) => this.Close(); // Cerrar el formulario actual cuando se cierre el formulario de transferencia
+                transferenciaForm.Show();
+            }
+            else
+            {
+                MessageBox.Show("No se pudo obtener el número de cuenta.");
+            }
+
+        }
+
+
+
+            private string ObtenerCuentaPrincipal(string usuario, string clabe)
+        {
+            using (SqlConnection conexion = new SqlConnection(cadenaconexion))
+            {
+                string query = "SELECT NoCuentaPrincipal FROM Clientes WHERE Usuario = @Usuario AND Clabe = @Clabe";
+                SqlCommand command = new SqlCommand(query, conexion);
+                command.Parameters.AddWithValue("@Usuario", usuario);
+                command.Parameters.AddWithValue("@Clabe", clabe);
+
+                try
+                {
+                    conexion.Open();
+                    object result = command.ExecuteScalar();
+                    if (result != null)
+                    {
+                        return result.ToString();
+                    }
+                    else
+                    {
+                        throw new Exception("No se encontró la cuenta principal para el usuario proporcionado.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error al obtener la cuenta principal: {ex.Message}", "Error");
+                    return null;
+                }
+            }
+        }
+
+   
+
+        private void MenuCajero_Load(object sender, EventArgs e)
+        {
+            string usuario = _usuario; // Usar el usuario almacenado en la clase en lugar del texto de un TextBox
+
+            string numeroDeCuenta = ObtenerCuentaPrincipal(usuario, _clabe);
+
+            if (!string.IsNullOrEmpty(numeroDeCuenta))
+            {
+                label11.Text = numeroDeCuenta;
+            }
+            else
+            {
+                label11.Text = "Número de cuenta no encontrado";
+            }
+        }
+
+        
+
     }
 }
 

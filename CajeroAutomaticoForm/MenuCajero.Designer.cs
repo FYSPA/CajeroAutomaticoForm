@@ -46,7 +46,6 @@ namespace CajeroAutomaticoForm
             this.btnConsultaNoCuenta = new System.Windows.Forms.Button();
             this.btnConsultaPuntos = new System.Windows.Forms.Button();
             this.btnCanjearPuntos = new System.Windows.Forms.Button();
-            this.btnCerrarSesion = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -63,6 +62,10 @@ namespace CajeroAutomaticoForm
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.label8 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.btnCerrarSesion = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -214,6 +217,7 @@ namespace CajeroAutomaticoForm
             this.Transferencia.Size = new System.Drawing.Size(42, 26);
             this.Transferencia.TabIndex = 3;
             this.Transferencia.UseVisualStyleBackColor = false;
+            this.Transferencia.Click += new System.EventHandler(this.Transferencia_Click);
             // 
             // btnConsultaNoCuenta
             // 
@@ -254,20 +258,6 @@ namespace CajeroAutomaticoForm
             this.btnCanjearPuntos.TabIndex = 6;
             this.btnCanjearPuntos.UseVisualStyleBackColor = false;
             this.btnCanjearPuntos.Click += new System.EventHandler(this.btnCanjearPuntos_Click);
-            // 
-            // btnCerrarSesion
-            // 
-            this.btnCerrarSesion.BackColor = System.Drawing.Color.Transparent;
-            this.btnCerrarSesion.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnCerrarSesion.BackgroundImage")));
-            this.btnCerrarSesion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnCerrarSesion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCerrarSesion.Location = new System.Drawing.Point(363, 526);
-            this.btnCerrarSesion.Margin = new System.Windows.Forms.Padding(0);
-            this.btnCerrarSesion.Name = "btnCerrarSesion";
-            this.btnCerrarSesion.Size = new System.Drawing.Size(40, 31);
-            this.btnCerrarSesion.TabIndex = 7;
-            this.btnCerrarSesion.UseVisualStyleBackColor = false;
-            this.btnCerrarSesion.Click += new System.EventHandler(this.btnCerrarSesion_Click);
             // 
             // button1
             // 
@@ -503,11 +493,62 @@ namespace CajeroAutomaticoForm
             this.label8.BackColor = System.Drawing.Color.Blue;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(193, 306);
+            this.label8.Location = new System.Drawing.Point(206, 307);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(31, 13);
             this.label8.TabIndex = 37;
             this.label8.Text = "HMS";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.Color.Blue;
+            this.label10.Font = new System.Drawing.Font("Maiandra GD", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.White;
+            this.label10.Location = new System.Drawing.Point(270, 499);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(71, 14);
+            this.label10.TabIndex = 38;
+            this.label10.Text = "Meter Dinero";
+            // 
+            // btnCerrarSesion
+            // 
+            this.btnCerrarSesion.BackColor = System.Drawing.Color.Transparent;
+            this.btnCerrarSesion.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnCerrarSesion.BackgroundImage")));
+            this.btnCerrarSesion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnCerrarSesion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCerrarSesion.Location = new System.Drawing.Point(363, 526);
+            this.btnCerrarSesion.Margin = new System.Windows.Forms.Padding(0);
+            this.btnCerrarSesion.Name = "btnCerrarSesion";
+            this.btnCerrarSesion.Size = new System.Drawing.Size(40, 31);
+            this.btnCerrarSesion.TabIndex = 7;
+            this.btnCerrarSesion.UseVisualStyleBackColor = false;
+            this.btnCerrarSesion.Click += new System.EventHandler(this.btnCerrarSesion_Click);
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.Transparent;
+            this.button3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button3.BackgroundImage")));
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Location = new System.Drawing.Point(363, 487);
+            this.button3.Margin = new System.Windows.Forms.Padding(0);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(40, 31);
+            this.button3.TabIndex = 39;
+            this.button3.UseVisualStyleBackColor = false;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.Color.Blue;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.White;
+            this.label11.Location = new System.Drawing.Point(194, 351);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(55, 13);
+            this.label11.TabIndex = 40;
+            this.label11.Text = "NoCuenta";
             // 
             // MenuCajero
             // 
@@ -516,6 +557,9 @@ namespace CajeroAutomaticoForm
             this.BackgroundImage = global::CajeroAutomaticoForm.Properties.Resources.cajero;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(624, 841);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.button2);
@@ -550,6 +594,7 @@ namespace CajeroAutomaticoForm
             this.DoubleBuffered = true;
             this.Name = "MenuCajero";
             this.Text = "MenuCajero";
+            this.Load += new System.EventHandler(this.MenuCajero_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -572,7 +617,6 @@ namespace CajeroAutomaticoForm
         private System.Windows.Forms.Button btnConsultaNoCuenta;
         private System.Windows.Forms.Button btnConsultaPuntos;
         private System.Windows.Forms.Button btnCanjearPuntos;
-        private System.Windows.Forms.Button btnCerrarSesion;
     //    private System.Windows.Forms.Timer hora;
         public System.Windows.Forms.Button button1;
         public System.Windows.Forms.Button button2;
@@ -590,5 +634,9 @@ namespace CajeroAutomaticoForm
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button btnCerrarSesion;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label label11;
     }
 }
