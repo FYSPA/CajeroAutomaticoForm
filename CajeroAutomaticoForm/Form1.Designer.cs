@@ -45,26 +45,26 @@ namespace CajeroAutomaticoForm
             // txtUSUARIO
             // 
             this.txtUSUARIO.Font = new System.Drawing.Font("Microsoft YaHei", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUSUARIO.Location = new System.Drawing.Point(172, 189);
+            this.txtUSUARIO.Location = new System.Drawing.Point(131, 295);
             this.txtUSUARIO.Name = "txtUSUARIO";
-            this.txtUSUARIO.Size = new System.Drawing.Size(241, 22);
+            this.txtUSUARIO.Size = new System.Drawing.Size(177, 22);
             this.txtUSUARIO.TabIndex = 0;
             // 
             // txtCLAVE
             // 
             this.txtCLAVE.Font = new System.Drawing.Font("Microsoft YaHei", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCLAVE.Location = new System.Drawing.Point(172, 263);
+            this.txtCLAVE.Location = new System.Drawing.Point(131, 369);
             this.txtCLAVE.Name = "txtCLAVE";
-            this.txtCLAVE.Size = new System.Drawing.Size(241, 22);
+            this.txtCLAVE.Size = new System.Drawing.Size(177, 22);
             this.txtCLAVE.TabIndex = 1;
             // 
             // Usuario
             // 
             this.Usuario.AutoSize = true;
-            this.Usuario.BackColor = System.Drawing.Color.MediumBlue;
+            this.Usuario.BackColor = System.Drawing.Color.Transparent;
             this.Usuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Usuario.ForeColor = System.Drawing.Color.White;
-            this.Usuario.Location = new System.Drawing.Point(172, 168);
+            this.Usuario.Location = new System.Drawing.Point(131, 274);
             this.Usuario.Name = "Usuario";
             this.Usuario.Size = new System.Drawing.Size(67, 18);
             this.Usuario.TabIndex = 2;
@@ -76,7 +76,7 @@ namespace CajeroAutomaticoForm
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(172, 242);
+            this.label1.Location = new System.Drawing.Point(131, 348);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(50, 18);
             this.label1.TabIndex = 3;
@@ -86,23 +86,23 @@ namespace CajeroAutomaticoForm
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(169, 96);
+            this.label2.Location = new System.Drawing.Point(114, 249);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(274, 18);
+            this.label2.Size = new System.Drawing.Size(218, 13);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Porfavor ingrese el usuario la clave";
+            this.label2.Text = "Porfavor ingrese el usuario y la clave";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(183, 315);
+            this.label3.Location = new System.Drawing.Point(131, 416);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(213, 18);
+            this.label3.Size = new System.Drawing.Size(160, 13);
             this.label3.TabIndex = 5;
             this.label3.Text = "Si es correcto pulse \'Enter\'";
             // 
@@ -110,11 +110,11 @@ namespace CajeroAutomaticoForm
             // 
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(183, 343);
+            this.label4.Location = new System.Drawing.Point(131, 444);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(237, 18);
+            this.label4.Size = new System.Drawing.Size(177, 13);
             this.label4.TabIndex = 6;
             this.label4.Text = "Si no es correcto pulse \'Clear\'";
             // 
@@ -124,7 +124,7 @@ namespace CajeroAutomaticoForm
             this.btnEnter.BackColor = System.Drawing.Color.Transparent;
             this.btnEnter.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnEnter.BackgroundImage")));
             this.btnEnter.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnEnter.Location = new System.Drawing.Point(336, 623);
+            this.btnEnter.Location = new System.Drawing.Point(303, 677);
             this.btnEnter.Name = "btnEnter";
             this.btnEnter.Size = new System.Drawing.Size(77, 30);
             this.btnEnter.TabIndex = 7;
@@ -135,7 +135,7 @@ namespace CajeroAutomaticoForm
             // 
             this.btnSalir.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSalir.BackgroundImage")));
             this.btnSalir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnSalir.Location = new System.Drawing.Point(329, 571);
+            this.btnSalir.Location = new System.Drawing.Point(296, 625);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(70, 31);
             this.btnSalir.TabIndex = 8;
@@ -148,7 +148,7 @@ namespace CajeroAutomaticoForm
             this.btnClear.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnClear.BackgroundImage")));
             this.btnClear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnClear.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnClear.Location = new System.Drawing.Point(331, 597);
+            this.btnClear.Location = new System.Drawing.Point(298, 651);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(73, 29);
             this.btnClear.TabIndex = 9;
@@ -160,7 +160,7 @@ namespace CajeroAutomaticoForm
             this.AcceptButton = this.btnEnter;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImage = global::CajeroAutomaticoForm.Properties.Resources.cajero;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(583, 712);
             this.Controls.Add(this.btnEnter);

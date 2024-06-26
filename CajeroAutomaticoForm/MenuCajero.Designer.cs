@@ -35,7 +35,6 @@ namespace CajeroAutomaticoForm
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.labTitular = new System.Windows.Forms.Label();
@@ -64,7 +63,6 @@ namespace CajeroAutomaticoForm
             this.label8 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.btnCerrarSesion = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -116,18 +114,6 @@ namespace CajeroAutomaticoForm
             this.label4.Size = new System.Drawing.Size(69, 14);
             this.label4.TabIndex = 16;
             this.label4.Text = "Transferencia";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.Blue;
-            this.label5.Font = new System.Drawing.Font("Maiandra GD", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(128, 535);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(118, 14);
-            this.label5.TabIndex = 17;
-            this.label5.Text = "Consulta no. de Cuenta";
             // 
             // label6
             // 
@@ -505,7 +491,7 @@ namespace CajeroAutomaticoForm
             this.label10.BackColor = System.Drawing.Color.Blue;
             this.label10.Font = new System.Drawing.Font("Maiandra GD", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(270, 499);
+            this.label10.Location = new System.Drawing.Point(135, 534);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(71, 14);
             this.label10.TabIndex = 38;
@@ -524,19 +510,6 @@ namespace CajeroAutomaticoForm
             this.btnCerrarSesion.TabIndex = 7;
             this.btnCerrarSesion.UseVisualStyleBackColor = false;
             this.btnCerrarSesion.Click += new System.EventHandler(this.btnCerrarSesion_Click);
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.Transparent;
-            this.button3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button3.BackgroundImage")));
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Location = new System.Drawing.Point(363, 487);
-            this.button3.Margin = new System.Windows.Forms.Padding(0);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(40, 31);
-            this.button3.TabIndex = 39;
-            this.button3.UseVisualStyleBackColor = false;
             // 
             // label11
             // 
@@ -558,7 +531,6 @@ namespace CajeroAutomaticoForm
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(624, 841);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.button3);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.button1);
@@ -585,7 +557,6 @@ namespace CajeroAutomaticoForm
             this.Controls.Add(this.labTitular);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
@@ -606,7 +577,6 @@ namespace CajeroAutomaticoForm
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label labTitular;
@@ -636,7 +606,6 @@ namespace CajeroAutomaticoForm
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button btnCerrarSesion;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label11;
     }
 }
