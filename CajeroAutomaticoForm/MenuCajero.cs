@@ -134,10 +134,6 @@ namespace CajeroAutomaticoForm
 
 
 
-        private void btnCanjearPuntos_Click(object sender, EventArgs e)
-        {
-            // Implementación para canjear puntos
-        }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
@@ -215,8 +211,60 @@ namespace CajeroAutomaticoForm
             }
         }
 
-        
+        private void btnDeposito_Click(object sender, EventArgs e)
+        {
 
+            Deposito nuevoMenu = new Deposito();
+            nuevoMenu.Show();
+
+
+
+        }
+
+        private void btnConsultaPuntos_Click(object sender, EventArgs e)
+        {
+            string usuario = _usuario; // Obtener el usuario del formulario de inicio de sesión
+            string clabe = _clabe; // Obtener la clave del formulario de inicio de sesión
+
+            string cuentaConsulta = ObtenerCuentaPrincipal(usuario, clabe);
+            if (cuentaConsulta == null)
+            {
+                MessageBox.Show("No se pudo obtener la cuenta principal. Verifica tus credenciales.");
+                return;
+            }
+
+            using (SqlConnection connection = new SqlConnection(cadenaconexion))
+            {
+                connection.Open();
+
+                try
+                {
+                    int puntos = ObtenerPuntos(cuentaConsulta, connection);
+                    MessageBox.Show($"Tienes {puntos} puntos acumulados.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error al consultar los puntos: {ex.Message}");
+                }
+            }
+        }
+
+        private int ObtenerPuntos(string numeroCuenta, SqlConnection connection)
+        {
+            string query = "SELECT Puntos FROM DatosCliente WHERE NoCuentaPrincipal = @NoCuentaPrincipal";
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@NoCuentaPrincipal", numeroCuenta);
+                object result = command.ExecuteScalar();
+                return result != DBNull.Value ? Convert.ToInt32(result) : 0;
+            }
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
     }
-}
+   }
+
 

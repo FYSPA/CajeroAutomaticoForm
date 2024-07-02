@@ -42,7 +42,7 @@ namespace CajeroAutomaticoForm
             this.btnConsultarSaldo = new System.Windows.Forms.Button();
             this.btnRetirarSaldo = new System.Windows.Forms.Button();
             this.Transferencia = new System.Windows.Forms.Button();
-            this.btnConsultaNoCuenta = new System.Windows.Forms.Button();
+            this.btnDeposito = new System.Windows.Forms.Button();
             this.btnConsultaPuntos = new System.Windows.Forms.Button();
             this.btnCanjearPuntos = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -205,18 +205,19 @@ namespace CajeroAutomaticoForm
             this.Transferencia.UseVisualStyleBackColor = false;
             this.Transferencia.Click += new System.EventHandler(this.Transferencia_Click);
             // 
-            // btnConsultaNoCuenta
+            // btnDeposito
             // 
-            this.btnConsultaNoCuenta.BackColor = System.Drawing.Color.Transparent;
-            this.btnConsultaNoCuenta.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnConsultaNoCuenta.BackgroundImage")));
-            this.btnConsultaNoCuenta.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnConsultaNoCuenta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConsultaNoCuenta.Location = new System.Drawing.Point(62, 527);
-            this.btnConsultaNoCuenta.Margin = new System.Windows.Forms.Padding(0);
-            this.btnConsultaNoCuenta.Name = "btnConsultaNoCuenta";
-            this.btnConsultaNoCuenta.Size = new System.Drawing.Size(42, 26);
-            this.btnConsultaNoCuenta.TabIndex = 4;
-            this.btnConsultaNoCuenta.UseVisualStyleBackColor = false;
+            this.btnDeposito.BackColor = System.Drawing.Color.Transparent;
+            this.btnDeposito.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnDeposito.BackgroundImage")));
+            this.btnDeposito.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnDeposito.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeposito.Location = new System.Drawing.Point(62, 527);
+            this.btnDeposito.Margin = new System.Windows.Forms.Padding(0);
+            this.btnDeposito.Name = "btnDeposito";
+            this.btnDeposito.Size = new System.Drawing.Size(42, 26);
+            this.btnDeposito.TabIndex = 4;
+            this.btnDeposito.UseVisualStyleBackColor = false;
+            this.btnDeposito.Click += new System.EventHandler(this.btnDeposito_Click);
             // 
             // btnConsultaPuntos
             // 
@@ -230,6 +231,7 @@ namespace CajeroAutomaticoForm
             this.btnConsultaPuntos.Size = new System.Drawing.Size(40, 31);
             this.btnConsultaPuntos.TabIndex = 5;
             this.btnConsultaPuntos.UseVisualStyleBackColor = false;
+            this.btnConsultaPuntos.Click += new System.EventHandler(this.btnConsultaPuntos_Click);
             // 
             // btnCanjearPuntos
             // 
@@ -243,7 +245,6 @@ namespace CajeroAutomaticoForm
             this.btnCanjearPuntos.Size = new System.Drawing.Size(40, 31);
             this.btnCanjearPuntos.TabIndex = 6;
             this.btnCanjearPuntos.UseVisualStyleBackColor = false;
-            this.btnCanjearPuntos.Click += new System.EventHandler(this.btnCanjearPuntos_Click);
             // 
             // button1
             // 
@@ -493,9 +494,9 @@ namespace CajeroAutomaticoForm
             this.label10.ForeColor = System.Drawing.Color.White;
             this.label10.Location = new System.Drawing.Point(135, 534);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(71, 14);
+            this.label10.Size = new System.Drawing.Size(51, 14);
             this.label10.TabIndex = 38;
-            this.label10.Text = "Meter Dinero";
+            this.label10.Text = "Deposito";
             // 
             // btnCerrarSesion
             // 
@@ -522,6 +523,7 @@ namespace CajeroAutomaticoForm
             this.label11.Size = new System.Drawing.Size(55, 13);
             this.label11.TabIndex = 40;
             this.label11.Text = "NoCuenta";
+            this.label11.Click += new System.EventHandler(this.label11_Click);
             // 
             // MenuCajero
             // 
@@ -549,7 +551,7 @@ namespace CajeroAutomaticoForm
             this.Controls.Add(this.btnCerrarSesion);
             this.Controls.Add(this.btnCanjearPuntos);
             this.Controls.Add(this.btnConsultaPuntos);
-            this.Controls.Add(this.btnConsultaNoCuenta);
+            this.Controls.Add(this.btnDeposito);
             this.Controls.Add(this.Transferencia);
             this.Controls.Add(this.btnRetirarSaldo);
             this.Controls.Add(this.btnConsultarSaldo);
@@ -584,7 +586,7 @@ namespace CajeroAutomaticoForm
         private System.Windows.Forms.Button btnConsultarSaldo;
         private System.Windows.Forms.Button btnRetirarSaldo;
         private System.Windows.Forms.Button Transferencia;
-        private System.Windows.Forms.Button btnConsultaNoCuenta;
+        private System.Windows.Forms.Button btnDeposito;
         private System.Windows.Forms.Button btnConsultaPuntos;
         private System.Windows.Forms.Button btnCanjearPuntos;
     //    private System.Windows.Forms.Timer hora;
